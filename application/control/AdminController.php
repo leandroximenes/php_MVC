@@ -6,10 +6,10 @@
  * @package TutsupMVC
  * @since 0.1
  */
-class HomeController extends CrudController {
+class AdminController extends CrudController {
 
     public function __construct() {
-        $this->controlador = 'home';
+        $this->controlador = 'index';
     }
 
     public function index() {

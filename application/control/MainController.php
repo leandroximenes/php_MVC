@@ -67,6 +67,16 @@ class MainController {
     private $parametros;
 
     /**
+     * $application
+     *
+     * Seta a variavel se utilizar o modulo aplication, caso chamando o admin
+     * exemplo.com/ADMIN/controlador/acao/param1/param2/param50
+     *
+     * @access private
+     */
+    private $application;
+
+    /**
      * $formData
      *
      * Dados passado pelo controlador Ex: registros do banco
@@ -91,10 +101,10 @@ class MainController {
      * o controlado e a ação (método).
      */
     public function __construct() {
-        $this->control = new HomeController();
         $this->headTitle = NAMESYSTEM;
         $this->controlador = 'home';
         $this->acao = 'index';
+        $this->application = false;
     }
 
     /**
@@ -121,28 +131,45 @@ class MainController {
 
             // Cria um array de parâmetros
             $path = explode('/', $path);
+            $appName = preg_replace('/[^a-zA-Z]/i', '', $path[0]);
 
+            if ($appName == APP_NAME) {
+                $this->application = true;
 
-            $controller = ucfirst(preg_replace('/[^a-zA-Z]/i', '', $path[0])) . 'Controller';
-            if (file_exists(ABSPATH . '/application/control/' . $controller . '.php')) {
+                if (!isset($path[1])) {
+                    if (logado) {
+                        $this->controlador = 'home';
+                        $this->acao = 'index';
+                        $this->control = new AdminController();
+                    } else {
+                        //login
+                    }
+                } else {
+                    $controller = isset($path[1]) ? ucfirst(preg_replace('/[^a-zA-Z]/i', '', $path[1])) . 'Controller' : 'AdminController';
+                    if (file_exists(ABSPATH . '/application/control/' . $controller . '.php')) {
 
-                $this->controlador = $path[0];
-                $this->control = new $controller();
-                $this->headTitle = $this->control->getHeadTitle();
+                        $this->controlador = $path[1];
+                        $this->control = new $controller();
+                        $this->headTitle = $this->control->getHeadTitle();
 
-                if (isset($path[1]))
-                    $this->acao = preg_replace('/[^a-zA-Z]/i', '', $path[1]);
+                        if (isset($path[2]))
+                            $this->acao = preg_replace('/[^a-zA-Z]/i', '', $path[2]);
 
-                // Configura os parâmetros
-                if (chk_array($path, 2)) {
-                    unset($path[0]);
-                    unset($path[1]);
+                        // Configura os parâmetros
+                        if (chk_array($path, 3)) {
+                            unset($path[1]);
+                            unset($path[2]);
 
-                    // Os parâmetros sempre virão após a ação
-                    $this->parametros = array_values($path);
+                            // Os parâmetros sempre virão após a ação
+                            $this->parametros = array_values($path);
+                        }
+                    } else {
+                        $this->acao = '404';
+                    }
                 }
             } else {
-                $this->acao = '404';
+                $this->acao = (file_exists(ABSPATH . $appName . '.php')) ? $appName : '404';
+                return;
             }
         }
     }
@@ -158,7 +185,12 @@ class MainController {
 
     private function load_view() {
 
-        require_once ABS_VIEW . 'layout.php';
+        if ($this->application) {
+            require_once ABS_VIEW . 'layout.php';
+        } else {
+
+            require_once ABS_PUBLIC . 'layout.php';
+        }
         return;
     }
 
