@@ -1,19 +1,16 @@
 <?php
 
 /**
- * TutsupMVC - Gerencia Models, Controllers e Views
+ * Leandro Ximenes
  *
- * @package TutsupMVC
+ * @package Controller
  * @since 0.1
  */
 class AdminController extends CrudController {
 
-    public function __construct() {
-        $this->controlador = 'index';
-    }
-
-    public function index() {
-        
+    public function notFound() {
+        $this->page = '404';
+        return new ViewModel($this);
     }
 
 }

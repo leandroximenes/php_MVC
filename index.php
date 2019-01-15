@@ -9,4 +9,5 @@ require_once 'loader.php';
 
 // Run the application!
 $app = new MainController();
-$app->get_route();
+
+$app->run();

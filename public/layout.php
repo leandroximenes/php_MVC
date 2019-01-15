@@ -7,8 +7,13 @@
     </head>
     <body>
         <div class="container">
-            <?php include ABS_PUBLIC . $this->acao . '.php'; ?>
-
+            <?php
+            if (file_exists(ABS_PUBLIC . $this->controller->page . '.php')) {
+                include ABS_PUBLIC . $this->controller->page . '.php';
+            } else {
+                include ABS_PUBLIC . '404.php';
+            }
+            ?>
         </div> 
     </body>
 </html>

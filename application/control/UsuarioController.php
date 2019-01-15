@@ -1,23 +1,32 @@
 <?php
 
 /**
- * TutsupMVC - Gerencia Models, Controllers e Views
+ * Leandro Ximenes
  *
- * @package TutsupMVC
+ * @package Controller
  * @since 0.1
  */
 class UsuarioController extends CrudController {
 
-    public function __construct() {
+    public function __construct($parameters) {
+        parent::__construct($parameters);
         $this->setHeadTitle('Usuário');
     }
 
-    public function index() {
-        parent::__construct();
+    public function editar() {
+        return new ViewModel($this, array('a' => 10, 'b' => 20));
     }
 
-    public function editar() {
-        $this->formData = array('dados_banco' => 2);
+    public function ajax() {
+        echo json_encode(array(
+            'valid' => 'true'
+        ));
+
+        return;
+    }
+    
+    public function index(){
+        return new ViewModel($this, array('a' => 10, 'b' => 20));
     }
 
 }
