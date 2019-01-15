@@ -123,3 +123,15 @@ function chk_array($array, $key) {
     // Retorna nulo por padrão
     return null;
 }
+
+function redirect($public = true, $action = null, $controller = null) {
+
+    $host = $_SERVER['HTTP_HOST'];
+    $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+    
+    $url = $public ? 'admin/' : '';
+    $url .= $controller ? "$controller/" : '';
+    $url .= $action;
+    
+    header("Location: http://$host$uri/$url");
+}

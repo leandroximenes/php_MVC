@@ -1,9 +1,9 @@
 <?php
 
 /**
- * TutsupMVC - Gerencia Models, Controllers e Views
+ * Leandro Ximenes
  *
- * @package TutsupMVC
+ * @package Controller
  * @since 0.1
  */
 class CrudController {
@@ -12,19 +12,42 @@ class CrudController {
      * $headTitle
      *
      * Receberá o título da página.
-     * @access private
+     * @access public
      */
-    private $headTitle;
+    public $headTitle;
 
     /**
-     * $formData
-     *
-     * Receberá um array dos parâmetros (Também vem da URL):
-     * exemplo.com/controlador/acao/param1/param2/param50
-     *
-     * @access private
+     * $public
+     * acesso public.
+     * @access public
+     * @var boolean
      */
-    public $formData;
+    public $public;
+
+    /**
+     * $page
+     *
+     * nome da página.
+     *
+     * @access public
+     */
+    public $page;
+
+    /**
+     * $folder
+     *
+     * nome da pasta
+     *
+     * @access public
+     */
+    public $folder;
+
+    public function __construct($parameters) {
+        $this->headTitle = NAMESYSTEM;
+        $this->folder = $parameters->url_controlName;
+        $this->page = $parameters->acao;
+        $this->public = $parameters->public;
+    }
 
     function getHeadTitle() {
         return $this->headTitle;
@@ -35,15 +58,15 @@ class CrudController {
     }
 
     public function index() {
-        
+        return new ViewModel($this);
     }
 
     public function novo() {
-        
+        return new ViewModel($this);
     }
 
     public function editar() {
-        
+        return new ViewModel($this);
     }
 
     public function excluir() {

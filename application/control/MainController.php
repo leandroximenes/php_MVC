@@ -1,9 +1,9 @@
 <?php
 
 /**
- * TutsupMVC - Gerencia Models, Controllers e Views
+ * Leandro Ximenes
  *
- * @package TutsupMVC
+ * @package Controller
  * @since 0.1
  */
 class MainController {
@@ -14,27 +14,39 @@ class MainController {
      * Receberá a URL.
      * exemplo.com/controlador/
      *
-     * @access private
+     * @access public
      */
-    private $url;
+    public $url;
 
     /**
-     * $headTitle
+     * $url_controlName
      *
-     * Receberá o título da página.
-     * @access private
+     * Receberá o nome do controlador.
+     * exemplo.com/CONTROLADOR/
+     *
+     * @access public
      */
-    public $headTitle;
+    public $url_controlName;
 
     /**
-     * $controlador
+     * $controlName
      *
      * Receberá o valor do controlador (Vindo da URL).
      * exemplo.com/controlador/
      *
      * @access private
      */
-    private $controlador;
+    public $controlName;
+
+    /**
+     * $view
+     *
+     * Objeto ViewModel
+     * Passa pela janelas de visualização
+     *
+     * @access private
+     */
+    private $view;
 
     /**
      * $control
@@ -54,7 +66,7 @@ class MainController {
      *
      * @access private
      */
-    private $acao;
+    public $acao;
 
     /**
      * $parametros
@@ -67,23 +79,14 @@ class MainController {
     private $parametros;
 
     /**
-     * $application
+     * $public
      *
      * Seta a variavel se utilizar o modulo aplication, caso chamando o admin
      * exemplo.com/ADMIN/controlador/acao/param1/param2/param50
      *
-     * @access private
-     */
-    private $application;
-
-    /**
-     * $formData
-     *
-     * Dados passado pelo controlador Ex: registros do banco
-     *
      * @access public
      */
-    public $formData;
+    public $public;
 
     /**
      * $content
@@ -101,10 +104,11 @@ class MainController {
      * o controlado e a ação (método).
      */
     public function __construct() {
-        $this->headTitle = NAMESYSTEM;
-        $this->controlador = 'home';
+        $this->controlName = 'PublicController';
+        $this->url = 'index';
+        $this->url_controlName = 'public';
         $this->acao = 'index';
-        $this->application = false;
+        $this->public = true;
     }
 
     /**
@@ -133,64 +137,57 @@ class MainController {
             $path = explode('/', $path);
             $appName = preg_replace('/[^a-zA-Z]/i', '', $path[0]);
 
+
             if ($appName == APP_NAME) {
-                $this->application = true;
+                $this->public = false;
 
-                if (!isset($path[1])) {
-                    if (logado) {
-                        $this->controlador = 'home';
-                        $this->acao = 'index';
-                        $this->control = new AdminController();
-                    } else {
-                        //login
-                    }
-                } else {
-                    $controller = isset($path[1]) ? ucfirst(preg_replace('/[^a-zA-Z]/i', '', $path[1])) . 'Controller' : 'AdminController';
-                    if (file_exists(ABSPATH . '/application/control/' . $controller . '.php')) {
+                if (logado) {
+                    $this->controlName = 'AdminController';
+                    $this->url_controlName = 'home';
 
-                        $this->controlador = $path[1];
-                        $this->control = new $controller();
-                        $this->headTitle = $this->control->getHeadTitle();
+                    if (isset($path[1])) {
+                        $url_control = preg_replace('/[^a-zA-Z]/i', '', $path[1]);
+                        $controller = isset($path) ? ucfirst($url_control) . 'Controller' : 'AdminController';
+                        if (file_exists(ABSPATH . '/application/control/' . $controller . '.php')) {
 
-                        if (isset($path[2]))
-                            $this->acao = preg_replace('/[^a-zA-Z]/i', '', $path[2]);
+                            $this->controlName = $controller;
+                            $this->url_controlName = $url_control;
 
-                        // Configura os parâmetros
-                        if (chk_array($path, 3)) {
-                            unset($path[1]);
-                            unset($path[2]);
+                            if (isset($path[2]))
+                                $this->acao = preg_replace('/[^a-zA-Z]/i', '', $path[2]);
 
-                            // Os parâmetros sempre virão após a ação
-                            $this->parametros = array_values($path);
+                            // Configura os parâmetros
+                            if (chk_array($path, 3)) {
+                                unset($path[1]);
+                                unset($path[2]);
+
+                                // Os parâmetros sempre virão após a ação
+                                $this->parametros = array_values($path);
+                            }
+                        } else {
+                            $this->acao = 'notFound';
                         }
                     } else {
-                        $this->acao = '404';
+                        $this->acao = 'index';
+                    }
+                } else {
+                    $this->controlName = 'AuthController';
+                    $this->url_controlName = 'login';
+                    $this->acao = 'index';
+                    if (isset($path[2]) && $path[2] == 'login') {
+                        $this->acao = 'login';
                     }
                 }
-            } else {
-                $this->acao = (file_exists(ABSPATH . $appName . '.php')) ? $appName : '404';
-                return;
             }
         }
+        $this->control = new $this->controlName($this);
+        $this->control->{$this->acao}();
     }
 
-    public function get_route() {
+    public function run() {
 
         $this->get_control();
 
-        $this->load_view();
-
-        return;
-    }
-
-    private function load_view() {
-
-        if ($this->application) {
-            require_once ABS_VIEW . 'layout.php';
-        } else {
-
-            require_once ABS_PUBLIC . 'layout.php';
-        }
         return;
     }
 
