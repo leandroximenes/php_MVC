@@ -134,11 +134,11 @@
             $.ajax({
                 type: "POST",
                 async: true,
-                url: 'auth/login',
+                url: '<?= ADMIN_SRC ?>auth/login',
                 dataType: 'json',
                 data: {email: $('#email').val(), senha: $('#senha').val()},
                 success: function (data) {
-                    window.location = 'i_home.php';
+                    window.location = window.location;
                 },
                 error: function () {
                     $('#divError').show();
@@ -146,11 +146,6 @@
                 }
             });
             return false;
-        });
-        $('img').each(function () {
-            if ($(this).attr('src') == "https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png") {
-                $(this).remove();
-            }
         });
         $('input').keydown(function () {
             $('#divError').hide();

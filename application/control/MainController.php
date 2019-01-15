@@ -144,7 +144,7 @@ class MainController {
                 if (logado) {
                     $this->controlName = 'AdminController';
                     $this->url_controlName = 'home';
-                    
+
                     if (isset($path[1])) {
                         $url_control = preg_replace('/[^a-zA-Z]/i', '', $path[1]);
                         $controller = isset($path) ? ucfirst($url_control) . 'Controller' : 'AdminController';
@@ -174,6 +174,9 @@ class MainController {
                     $this->controlName = 'AuthController';
                     $this->url_controlName = 'login';
                     $this->acao = 'index';
+                    if (isset($path[2]) && $path[2] == 'login') {
+                        $this->acao = 'login';
+                    }
                 }
             }
         }

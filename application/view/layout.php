@@ -11,7 +11,11 @@
         <div class="container">
             <?php
             include ABS_VIEW . $this->controller->folder . '/' . $this->controller->page . '.php';
+            if (logado) {
+                echo '<a href="auth/logout">Sair</a>';
+            }
             ?>
+
             <hr>
             <footer>
                 <p>&copy; 2013 - <?php echo date('Y') ?> <b></b>  <?php echo 'All rights reserved.' ?></p>
