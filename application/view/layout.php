@@ -12,7 +12,7 @@
             <?php
             include ABS_VIEW . $this->controller->folder . '/' . $this->controller->page . '.php';
             if (logado) {
-                echo '<a href="auth/logout">Sair</a>';
+                echo '<a href="' . ADMIN_SRC . 'auth/logout">Sair</a>';
             }
             ?>
 

@@ -181,7 +181,10 @@ class MainController {
             }
         }
         $this->control = new $this->controlName($this);
-        $this->control->{$this->acao}();
+        if (method_exists($this->control, $this->acao))
+            $this->control->{$this->acao}();
+        else
+            $this->control->notFound();
     }
 
     public function run() {

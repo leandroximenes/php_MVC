@@ -21,7 +21,7 @@ class AuthController extends CrudController {
 
     public function logout() {
         session_unset();
-        redirect(false, null, 'admin');
+        redirect(true);
     }
 
 }
