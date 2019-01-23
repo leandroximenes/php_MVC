@@ -1,0 +1,21 @@
+CREATE DATABASE controle;
+USE controle;
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) DEFAULT NULL,
+  `email` varchar(145) DEFAULT NULL,
+  `senha` varchar(145) DEFAULT NULL,
+  `perfil` smallint(1) DEFAULT NULL,
+  `ativo` smallint(1) DEFAULT NULL
+);
+
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `perfil`, `ativo`) VALUES
+(1, 'Leandro', 'leandroj.r.ximenes@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1,  1);
+
+
+SELECT * FROM usuarios;
