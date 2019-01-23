@@ -10,6 +10,8 @@ spl_autoload_register(function ($class_name) {
         require_once (ABSPATH . '/application/control/' . $class_name . '.php');
     } elseif (file_exists(ABSPATH . '/application/model/' . $class_name . '.php')) {
         require_once (ABSPATH . '/application/model/' . $class_name . '.php');
+    } elseif (file_exists(ABSPATH . '/application/model/DAO/' . $class_name . '.php')) {
+        require_once (ABSPATH . '/application/model/DAO/' . $class_name . '.php');
     } elseif (file_exists(ABSPATH . '/application/view/' . $class_name . '.php')) {
         require_once (ABSPATH . '/application/view/' . $class_name . '.php');
     }

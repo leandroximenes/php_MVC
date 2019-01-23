@@ -9,12 +9,27 @@
 class AuthController extends CrudController {
 
     public function login() {
-        $a = 10;
-        if (isset($_POST['email'])) {
-            $_SESSION[APP_NAME]['logado'] = true;
-            echo json_encode(array(
-                'valid' => 'true'
-            ));
+        try {
+            if (empty($_POST['email']) || empty($_POST['senha'])) {
+                throw new Exception("Não foi passado os parâmetros necessários");
+            }
+            $email = addslashes($_POST['email']);
+            $senha = md5(addslashes($_POST['senha']));
+
+            $usuarioDAO = new usuarios();
+            $usuario = $usuarioDAO->execute("SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'");
+
+            if (count($usuario) > 0) {
+                $_SESSION[APP_NAME]['logado'] = true;
+                echo json_encode(array(
+                    'valid' => 'true'
+                ));
+            } else {
+                throw new Exception("Não foi encontrado nenhum usuário");
+            }
+        } catch (Exception $ex) {
+            header('HTTP/1.1 500');
+            echo $ex->getMessage();
         }
         return;
     }
