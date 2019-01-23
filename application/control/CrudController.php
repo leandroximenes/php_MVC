@@ -73,4 +73,10 @@ class CrudController {
         
     }
 
+    public function notFound() {
+        $this->folder = 'home';
+        $this->page = '404';
+        return new ViewModel($this);
+    }
+
 }
