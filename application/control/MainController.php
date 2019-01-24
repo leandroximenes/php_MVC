@@ -74,9 +74,9 @@ class MainController {
      * Receberá um array dos parâmetros (Também vem da URL):
      * exemplo.com/controlador/acao/param1/param2/param50
      *
-     * @access private
+     * @access public
      */
-    private $parametros;
+    public $parametros;
 
     /**
      * $public
@@ -158,11 +158,9 @@ class MainController {
 
                             // Configura os parâmetros
                             if (chk_array($path, 3)) {
-                                unset($path[1]);
-                                unset($path[2]);
 
                                 // Os parâmetros sempre virão após a ação
-                                $this->parametros = array_values($path);
+                                $this->parametros = $path[3];
                             }
                         } else {
                             $this->acao = 'notFound';
@@ -181,10 +179,11 @@ class MainController {
             }
         }
         $this->control = new $this->controlName($this);
-        if (method_exists($this->control, $this->acao))
+        if (method_exists($this->control, $this->acao)) {
             $this->control->{$this->acao}();
-        else
+        } else {
             $this->control->notFound();
+        }
     }
 
     public function run() {

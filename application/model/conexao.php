@@ -59,7 +59,14 @@ class Conexao extends PDO {
 
     public function find($id) {
         $query = $this->query("SELECT * FROM {$this->_table} WHERE id = $id");
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        $array = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $array[0];
+    }
+
+    public function findHash($hash) {
+        $query = $this->query("SELECT * FROM {$this->_table} WHERE hash_id = '$hash'");
+        $array = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $array[0];
     }
 
     public function findAll() {
@@ -98,11 +105,21 @@ class Conexao extends PDO {
         $action = $this->prepare($sql);
         if ($action->execute()) {
             $this->_rowAffected = $action->rowCount();
-            $this->_lastId = $array['id'] > 0 ? $array['id'] : $this->lastInsertId();
+            $this->_lastId = (isset($array['id']) && $array['id'] > 0) ? $array['id'] : $this->lastInsertId();
             return true;
         } else {
             $this->_errorInfo = $action->errorInfo();
             return false;
+        }
+    }
+
+    public function deleteHash($hash) {
+        $action = $this->prepare("DELETE FROM {$this->_table} WHERE hash_id = '$hash'");
+        if ($action->execute()) {
+            return $this->_rowAffected = $action->rowCount();
+        } else {
+            throw new Exception("Houve um erro ao excluir o registro");
+            return;
         }
     }
 

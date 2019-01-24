@@ -21,6 +21,12 @@ class ViewModel {
     protected $options = array();
 
     /**
+     * View $options
+     * @var array
+     */
+    public $mensagem = '';
+
+    /**
      * Constructor
      *
      * @param  array $options
@@ -32,6 +38,7 @@ class ViewModel {
         $this->controller = $controller;
         $this->data = $data;
         $this->options = $options;
+        $this->mensagem = $controller->GetMensagem();
         $this->getView();
     }
 

@@ -1,5 +1,4 @@
-<h2>Editar Usuário</h2>
-<?php $dados = $this->data['usuario'] ?>
+<h2>Cadastrar Usuário</h2>
 <?php loadMessagem($this->mensagem) ?>
 <form method="POST" enctype="multipart/form-data" class="form-inline">
     <div class="form-group">
@@ -7,14 +6,19 @@
             <tr>
                 <td width="70px">Nome</td>
                 <td width="300px">
-                    <input type="hidden" name="id" value="<?= $dados['id'] ?>">
-                    <input class="form-control input-input-lg" type="text" name="nome" required="required" id="nome" value="<?= $dados['nome'] ?>">
+                    <input class="form-control input-input-lg" type="text" name="nome" required="required" id="nome">
                 </td>
             </tr>
             <tr>
                 <td>Email</td>
                 <td>
-                    <input class="form-control input-input-lg" type="email" name="email" required="required" id="email" value="<?= $dados['email'] ?>">
+                    <input class="form-control input-input-lg" type="email" name="email" required="required" id="email">
+                </td>
+            </tr>
+            <tr>
+                <td>Senha</td>
+                <td>
+                    <input class="form-control input-input-lg" type="password" name="senha" required="required" id="senha">
                 </td>
             </tr>
             <tr>

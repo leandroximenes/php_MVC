@@ -1,3 +1,26 @@
+.navbar-toggle{
+    background-color: #23527c;
+    float: left;
+}
+
+.icon-bar{
+    background: white;
+    color: white;
+}
+.menu .active{
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent!important;
+    border-radius: 2px;
+}
+
+.menu0{
+    border-radius: 2px;
+    border-bottom: 1px solid #ddd;
+}
+
 .strong{
     font-weight: bolder;
     color: #a94442;
@@ -35,7 +58,7 @@ td {
     width: 170px !important;
 }
 
-input[type=text], select{
+input[type=text], select, input[type=email], input[type=password]{
     width: 100%!important;
     margin: 5px;
 }

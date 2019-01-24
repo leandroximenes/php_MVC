@@ -22,7 +22,9 @@ define('ADMIN_SRC', 'http://localhost/php_MVC/admin/');
 // Nome para acessar o modulo application. Ex: admin
 define('APP_NAME', 'admin');
 
+define('MSGM_SUCCESS', 'Registro salvo com sucesso!');
 
+define('MSGM_DANGER', 'Não foi possivel salvar o registro');
 
 
 
