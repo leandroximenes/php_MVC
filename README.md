@@ -13,7 +13,7 @@ There is auth module and user register.
 É um modelo muito simples de estrutrua de MVC. Contém Bootstrap, jQuery e Ajax.
 Há um módulo de login e registro de usuário.
 
-
+```bash
 
 LXMVC <br/>
 ├── application<br/>
@@ -50,9 +50,12 @@ LXMVC <br/>
 |    └── layout.php<br/>
 ├── util<br/>
 |    └── Util.php<br/>
-├── config.php<br/>
+├── config.php
 ├── index.php<br/>
 └── loader.php<br/>
+
+```
+
 
 ## License
 
