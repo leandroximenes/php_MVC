@@ -42,11 +42,30 @@ class CrudController {
      */
     public $folder;
 
+    /**
+     * $parametro
+     *
+     * Ex.: O id
+     *
+     * @access public
+     */
+    public $parametro;
+
+    /**
+     * $objDAO
+     *
+     * objeto para acesso ao banco de dados
+     *
+     * @access public
+     */
+    public $objDAO;
+
     public function __construct($parameters) {
         $this->headTitle = NAMESYSTEM;
         $this->folder = $parameters->url_controlName;
         $this->page = $parameters->acao;
         $this->public = $parameters->public;
+        $this->parametro = $parameters->parametros;
     }
 
     function getHeadTitle() {
@@ -77,6 +96,40 @@ class CrudController {
         $this->folder = 'home';
         $this->page = '404';
         return new ViewModel($this);
+    }
+
+    /**
+     * SetMensagem
+     *
+     * @param  string $tipo success, danger, className
+     * @param  string $texto Nome do controlador
+     */
+    protected function SetMensagem($tipo = 'success', $texto = null) {
+        if ($texto == null) {
+            switch ($tipo) {
+                case "success" :
+                    $texto = MSGM_SUCCESS;
+                    break;
+                case "danger":
+                    $texto = MSGM_DANGER;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        $_SESSION['mensagem']['tipo'] = $tipo;
+        $_SESSION['mensagem']['texto'] = $texto;
+    }
+
+    public function GetMensagem() {
+        $mensagem = '';
+        if (isset($_SESSION['mensagem']))
+            $mensagem = $_SESSION['mensagem'];
+
+        unset($_SESSION['mensagem']);
+        return $mensagem;
     }
 
 }

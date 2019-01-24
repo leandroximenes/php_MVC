@@ -124,14 +124,31 @@ function chk_array($array, $key) {
     return null;
 }
 
-function redirect($public = true, $action = null, $controller = null) {
+/**
+ * redirect
+ *
+ * @param  bool $public Está no módulo admin
+ * @param  string $action Nome do controlador
+ * @param  string $controller Nome da ação
+ */
+function redirect($controller = null, $action = null, $public = true) {
 
     $host = $_SERVER['HTTP_HOST'];
     $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-    
+
     $url = $public ? 'admin/' : '';
     $url .= $controller ? "$controller/" : '';
     $url .= $action;
-    
+
     header("Location: http://$host$uri/$url");
+}
+
+function loadMessagem($array) {
+    if (!empty($array))
+        echo <<<MSG
+        <div class="alert alert-{$array['tipo']}">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>{$array['texto']}</h4>
+        </div>
+MSG;
 }

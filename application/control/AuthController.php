@@ -8,6 +8,10 @@
  */
 class AuthController extends CrudController {
 
+    public function index() {
+        include ABS_VIEW . $this->folder . '/' . $this->page . '.php';
+    }
+
     public function login() {
         try {
             if (empty($_POST['email']) || empty($_POST['senha'])) {
@@ -21,6 +25,7 @@ class AuthController extends CrudController {
 
             if (count($usuario) > 0) {
                 $_SESSION[APP_NAME]['logado'] = true;
+                $_SESSION[APP_NAME]['usuario'] = $usuario[0];
                 echo json_encode(array(
                     'valid' => 'true'
                 ));
@@ -36,7 +41,7 @@ class AuthController extends CrudController {
 
     public function logout() {
         session_unset();
-        redirect(true);
+        redirect();
     }
 
 }
