@@ -5,3 +5,5 @@ Bootstrap
 PT-BR
 SIMPLE
 MYSQL
+JSON
+AJAX
