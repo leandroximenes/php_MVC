@@ -3,16 +3,16 @@
 These is a simple MVC.
 # Examples
 
-## pubilc
-public access index: https://leandroximenes.000webhostapp.com/
-public access example: https://leandroximenes.000webhostapp.com/contato
-public access 404: https://leandroximenes.000webhostapp.com/sdfsdf
+## public
+public access index: https://leandroximenes.000webhostapp.com/<br/>
+public access example: https://leandroximenes.000webhostapp.com/contato<br/>
+public access 404: https://leandroximenes.000webhostapp.com/sdfsdf<br/>
 
 
 ## Admin
-public access admin: https://leandroximenes.000webhostapp.com/admin
-email: leandroj.r.ximenes@gmail.com
-senha: 123456
+public access admin: https://leandroximenes.000webhostapp.com/admin<br/>
+email: leandroj.r.ximenes@gmail.com<br/>
+senha: 123456<br/>
 
 ## Simple
 
