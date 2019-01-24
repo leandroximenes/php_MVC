@@ -19,40 +19,40 @@ LXMVC <br/>
 ├── application<br/>
 │   ├── control<br/>
 │   │   ├── AdminController.php<br/>
-│   │   ├── AuthController.php
-│   │   ├── CrudController.php
-│   │   ├── MainController.php
-│   │   ├── PublicController.php
-│   │   └── UsuarioController.php
-│   ├── model
-│   │   ├── DAO
-│   │   │   └── usuarios.php
-│   │   ├── conexao.php
-│   │   └── sql
-│   └── views
-│       ├── home
-│       │   ├── 404.php
-│       │   └── index.php
-│       ├── login
-│       │   └── index.php
-│       ├── usuario
-│       │   ├── alterarSenha.php
-│       │   ├── editar.php
-│       │   ├── index.php
-│       │   └── novov.php
-│       ├── ViewModel.php
-│       ├── layout.php
-├── public
-|    ├── css
-│    ├── js
-│    ├── 404.php
-│    ├── index.php
-|    └── layout.php
-├── util
-|    └── Util.php
-├── config.php
-├── index.php
-└── loader.php
+│   │   ├── AuthController.php<br/>
+│   │   ├── CrudController.php<br/>
+│   │   ├── MainController.php<br/>
+│   │   ├── PublicController.php<br/>
+│   │   └── UsuarioController.php<br/>
+│   ├── model<br/>
+│   │   ├── DAO<br/>
+│   │   │   └── usuarios.php<br/>
+│   │   ├── conexao.php<br/>
+│   │   └── sql<br/>
+│   └── views<br/>
+│       ├── home<br/>
+│       │   ├── 404.php<br/>
+│       │   └── index.php<br/>
+│       ├── login<br/>
+│       │   └── index.php<br/>
+│       ├── usuario<br/>
+│       │   ├── alterarSenha.php<br/>
+│       │   ├── editar.php<br/>
+│       │   ├── index.php<br/>
+│       │   └── novov.php<br/>
+│       ├── ViewModel.php<br/>
+│       ├── layout.php<br/>
+├── public<br/>
+|    ├── css<br/>
+│    ├── js<br/>
+│    ├── 404.php<br/>
+│    ├── index.php<br/>
+|    └── layout.php<br/>
+├── util<br/>
+|    └── Util.php<br/>
+├── config.php<br/>
+├── index.php<br/>
+└── loader.php<br/>
 
 ## License
 
