@@ -15,7 +15,7 @@ Há um módulo de login e registro de usuário.
 
 
 
-LXMVC
+LXMVC <br/>
 ├── application
 │   ├── control
 │   │   ├── AdminController.php
