@@ -140,7 +140,7 @@ function redirect($controller = null, $action = null, $public = true) {
     $url .= $controller ? "$controller/" : '';
     $url .= $action;
 
-    header("Location: http://$host$uri/$url");
+    header("Location:  " . PROTOCOLO . "$host$uri/$url");
 }
 
 function loadMessagem($array) {
