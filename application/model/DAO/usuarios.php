@@ -1,6 +1,6 @@
 <?php
 
-class usuarios extends Conexao {
+class usuarios extends conexao {
 
     function __construct() {
         parent::__construct();

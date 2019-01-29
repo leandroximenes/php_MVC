@@ -11,7 +11,7 @@
  *
  * @author Leandro
  */
-class Conexao extends PDO {
+class conexao extends PDO {
 
     /**
      * Conexao com o banco de dados
