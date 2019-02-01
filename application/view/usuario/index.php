@@ -1,7 +1,7 @@
 <h2>Listar usuários</h2>
 <h3><a href="<?= ADMIN_SRC ?>usuario/novo">Adicionar</a></h3><br/>
 <?php loadMessagem($this->mensagem) ?>
-<table class="table table-striped table-bordered table-hover">
+<table id="table-result" class="table table-striped table-bordered table-hover">
     <thead>
         <tr>
             <td width="15%">Ação</td>
@@ -41,6 +41,7 @@
                     dataType: 'json',
                     success: function () {
                         _this.closest('tr').remove();
+                        $('#table-result').ajax().reload();
                     },
                     error: function (error) {
                         alert(error.responseText);
@@ -48,6 +49,5 @@
                 });
             }
         });
-
     });
 </script>
