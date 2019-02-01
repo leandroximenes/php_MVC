@@ -5,21 +5,37 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=2.0">
         <!--css-->
-        <link rel="stylesheet" type="text/css" href="<?= PUBLIC_SRC ?>css/default.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?= PUBLIC_SRC ?>css/default.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
         <!--javascript-->
         <script src="<?= PUBLIC_SRC ?>js/jquery-1.11.3.mim.js"></script>
         <script src="<?= PUBLIC_SRC ?>js/bootstrap.min.js"></script>
+        <script src="<?= PUBLIC_SRC ?>js/default.js"></script>
+        <script src="<?= PUBLIC_SRC ?>js/datatable.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
-                $("a").each(function (index) {
-                    var _a = $(this);
-                    if (document.URL == _a.prop('href')) {
-                        _a.closest('.menu0').addClass('active');
-                    }
-                });
+                var arrayURL = document.URL.split('admin');
+                if (arrayURL[1] == "" || arrayURL[1] == "/") {
+                    $('#home').addClass('active');
+                } else {
+                    var parametros = arrayURL[1].split('/');
+                    var controller = parametros[1];
+                    $(".menu-item").each(function (index) {
+                        var _a = $(this);
+                        if (_a.prop('href').indexOf(controller)) {
+                            _a.closest('.menu0').addClass('active');
+                        }
+                    });
+                }
+
+                if ($('.alert') != undefined) {
+                    setTimeout(function () {
+                        $('.alert').hide(3000).remove();
+                    }, 5000); //5 Seconds
+                }
             });
         </script>
 
@@ -42,8 +58,8 @@
                         <li class="menu0" id="home" >
                             <a href="<?= ADMIN_SRC ?>">Início</a>
                         </li>
-                        <li class="menu0" id="home" >
-                            <a href="<?= ADMIN_SRC ?>usuario">Usuários</a>
+                        <li class="menu0">
+                            <a class="menu-item" href="<?= ADMIN_SRC ?>usuario">Usuários</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

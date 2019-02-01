@@ -136,9 +136,9 @@ function redirect($controller = null, $action = null, $public = true) {
     $host = $_SERVER['HTTP_HOST'];
     $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 
-    $url = $public ? 'admin/' : '';
-    $url .= $controller ? "$controller/" : '';
-    $url .= $action;
+    $url = $public ? 'admin' : '';
+    $url .= $controller ? "/$controller" : '';
+    $url .= $action ? "/$action" : '';
 
     header("Location:  " . PROTOCOLO . "$host$uri/$url");
 }
