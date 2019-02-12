@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    $('input').attr('autocomplete', 'off');
+
     $('body').on('focus', '.money', function () {
         $('.money').maskMoney({thousands: '.', decimal: ',', allowZero: true});
     });
@@ -11,6 +13,7 @@ $(document).ready(function () {
         $('.date-full').datepicker({
             format: "dd/mm/yyyy",
             autoclose: true,
+            todayHighlight: true,
             language: 'pt-BR'
         });
     });
@@ -23,6 +26,10 @@ $(document).ready(function () {
             autoclose: true,
             language: 'pt-BR'
         });
+    });
+
+    $('body').on('focus', '.cpf', function () {
+        $('.cpf').mask('000.000.000-00', {reverse: true});
     });
 
     $('#table-result').DataTable({
@@ -61,9 +68,27 @@ $(document).ready(function () {
         [1, 'desc'] // id sempre oculta
     ]).draw();
 
+    $('input[type="submit"]').on('click', function () {
+        $("input, select").each(function () {
+            var input = $(this);
+            if (input.is(':valid')) {
+                input.parent().removeClass('has-error');
+            } else {
+                input.parent().addClass('has-error');
+                $('.file-error-message').show();
+            }
+            input.bind('keyup change', function () {
+                if ($(this).is(':valid')) {
+                    input.parent().removeClass('has-error');
+                }
+            });
+        });
+        $('.arquivo').fileinput('upload');
+    });
 
-    $('input').attr('autocomplete', 'off');
+
 });
+
 function replaceAll(str, de, para) {
     var pos = str.indexOf(de);
     while (pos > -1) {

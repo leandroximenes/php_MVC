@@ -5,15 +5,24 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=2.0">
         <!--css-->
-        <link rel="stylesheet" href="<?= PUBLIC_SRC ?>css/default.css">
+        <link rel="stylesheet" href="<?= PUBLIC_SRC ?>css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="<?= PUBLIC_SRC ?>css/datepicker.css">
+        <link rel="stylesheet" href="<?= PUBLIC_SRC ?>css/datatables.min.css">
+        <link rel="stylesheet" href="<?= PUBLIC_SRC ?>css/fileinput.min.css">
+        <!--<link rel="stylesheet" href="<?= PUBLIC_SRC ?>css/default.css">-->
 
         <!--javascript-->
         <script src="<?= PUBLIC_SRC ?>js/jquery-1.11.3.mim.js"></script>
         <script src="<?= PUBLIC_SRC ?>js/bootstrap.min.js"></script>
-        <script src="<?= PUBLIC_SRC ?>js/default.js"></script>
+        <script src="<?= PUBLIC_SRC ?>js/bootstrap-datepicker.js"></script>
+        <script src="<?= PUBLIC_SRC ?>js/bootstrap-datepicker.pt-BR.js"></script>
+        <script src="<?= PUBLIC_SRC ?>js/fileinput.min.js"></script>
+        <script src="<?= PUBLIC_SRC ?>js/fileinput_locale_pt.js"></script>
+        <script src="<?= PUBLIC_SRC ?>js/jquery.maskMoney.js"></script>
+        <script src="<?= PUBLIC_SRC ?>js/jquery.mask.min.js"></script><!-- PT-BR--> 
         <script src="<?= PUBLIC_SRC ?>js/datatable.js"></script>
+        <script src="<?= PUBLIC_SRC ?>js/default.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -25,7 +34,7 @@
                     var controller = parametros[1];
                     $(".menu-item").each(function (index) {
                         var _a = $(this);
-                        if (_a.prop('href').indexOf(controller)) {
+                        if (_a.prop('href').indexOf(controller) != -1) {
                             _a.closest('.menu0').addClass('active');
                         }
                     });
@@ -38,6 +47,7 @@
                 }
             });
         </script>
+
 
     </head>
     <body>
@@ -60,6 +70,9 @@
                         </li>
                         <li class="menu0">
                             <a class="menu-item" href="<?= ADMIN_SRC ?>usuario">Usuários</a>
+                        </li>
+                        <li class="menu0">
+                            <a class="menu-item" href="<?= ADMIN_SRC ?>example">Example</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -87,5 +100,10 @@
                 <p>&copy; 2013 - <?php echo date('Y') ?> <b></b>  <?php echo 'All rights reserved.' ?></p>
             </footer>
         </div> 
+        <script>
+            $('.arquivo').fileinput({
+                language: 'pt'
+            });
+        </script>
     </body>
 </html>

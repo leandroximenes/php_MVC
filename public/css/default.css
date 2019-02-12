@@ -39,23 +39,12 @@
     display: none;
 }
 
-select, input{
-    margin-right: 40px;
-}
-
 thead, .total{
     font-weight: bold;
 }
-td { 
-    padding: 10px;
-}
+
 .kv-fileinput-caption{
     width: 170px !important;
-}
-
-input[type=text], select, input[type=email], input[type=password]{
-    width: 100%!important;
-    margin: 5px;
 }
 
 .panel h4, .panel label{

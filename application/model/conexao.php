@@ -66,12 +66,16 @@ class conexao extends PDO {
     public function findHash($hash) {
         $query = $this->query("SELECT * FROM {$this->_table} WHERE hash_id = '$hash'");
         $array = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $array[0];
+        return $this->getObjetctDAO($array[0]);
     }
 
     public function findAll() {
         $query = $this->query("SELECT * FROM {$this->_table}");
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        for ($i = 0; $i < count($result); $i++) {
+            $result[$i] = $this->getObjetctDAO($result[$i]);
+        }
+        return $result;
     }
 
     public function execute($sql) {
@@ -121,6 +125,25 @@ class conexao extends PDO {
             throw new Exception("Houve um erro ao excluir o registro");
             return;
         }
+    }
+
+    public function getObjetctDAO($objetct = null) {
+        $query = $this->query("SHOW COLUMNS FROM {$this->_table}");
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as $value) {
+            $arrayDAO[$value['Field']] = null;
+        }
+        return $arrayDAO;
+    }
+
+    public function setObjetctDAO($array) {
+        $objectDAO = $this->getObjetctDAO();
+        foreach ($array as $key => $value) {
+            if (array_key_exists($key, $objectDAO)) {
+                $objectDAO[$key] = $value;
+            }
+        }
+        return $objectDAO;
     }
 
 }

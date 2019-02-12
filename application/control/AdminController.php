@@ -7,5 +7,5 @@
  * @since 0.1
  */
 class AdminController extends CrudController {
-    
+
 }

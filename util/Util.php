@@ -5,85 +5,75 @@
  *
  * @author Leandro
  */
-function FormataDataBanco($data) {
-    $newData = "null";
-    if (!empty($data)) {
-        $arrayData = explode('/', $data);
-        $newData = "'" . $arrayData[2] . '-' . $arrayData[1] . '-' . $arrayData[0] . "'";
-    }
-    return $newData;
-}
-
-function FormataBancoData($data) {
-    if (!empty($data) && $data != null) {
-        $arrayData = explode('-', $data);
-        return $arrayData[2] . '/' . $arrayData[1] . '/' . $arrayData[0];
-    } else {
-        return '';
-    }
-}
-
 function inverteData(&$data) {
-    if (count(explode("/", $data)) > 1) {
-        return implode("-", array_reverse(explode("/", $data)));
-    } elseif (count(explode("-", $data)) > 1) {
-        return implode("/", array_reverse(explode("-", $data)));
+    if ($data != null && $data != '') {
+        if (count(explode("/", $data)) > 1) {
+            return $data = implode("-", array_reverse(explode("/", $data)));
+        } elseif (count(explode("-", $data)) > 1) {
+            return $data = implode("/", array_reverse(explode("-", $data)));
+        }
     }
 }
 
 function getDataExtenso($data) {
-    setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-    date_default_timezone_set('America/Sao_Paulo');
-    return utf8_encode(ucfirst(strftime('%B %Y', strtotime(date_format($data, 'Y-m-d')))));
+    if ($data != null && $data != '') {
+        setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+        date_default_timezone_set('America/Sao_Paulo');
+        return utf8_encode(ucfirst(strftime('%B %Y', strtotime(date_format($data, 'Y-m-d')))));
+    }
 }
 
 function getDiaSemana($data) {
-    setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-    date_default_timezone_set('America/Sao_Paulo');
-    return utf8_encode(strftime("%A", strtotime($data->format('Y-m-d'))));
+    if ($data != null && $data != '') {
+        setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+        date_default_timezone_set('America/Sao_Paulo');
+        return utf8_encode(strftime("%A", strtotime($data->format('Y-m-d'))));
+    }
 }
 
 function converterNumeroMes($mes) {
-    switch ($mes) {
-        case 1:
-            return 'Janeiro';
-            break;
-        case 2:
-            return 'Fevereiro';
-            break;
-        case 3:
-            return 'Março';
-            break;
-        case 4:
-            return 'Abril';
-            break;
-        case 5:
-            return 'Maio';
-            break;
-        case 6:
-            return 'Junho';
-            break;
-        case 7:
-            return 'Julho';
-            break;
-        case 8:
-            return 'Agosto';
-            break;
-        case 9:
-            return 'Setembro';
-            break;
-        case 10:
-            return 'Outubro';
-            break;
-        case 11:
-            return 'Novembro';
-            break;
-        case 12:
-            return 'Dezembro';
-            break;
+    if ($mes != null && $mes != '') {
+        switch ($mes) {
+            case 1:
+                return 'Janeiro';
+                break;
+            case 2:
+                return 'Fevereiro';
+                break;
+            case 3:
+                return 'Março';
+                break;
+            case 4:
+                return 'Abril';
+                break;
+            case 5:
+                return 'Maio';
+                break;
+            case 6:
+                return 'Junho';
+                break;
+            case 7:
+                return 'Julho';
+                break;
+            case 8:
+                return 'Agosto';
+                break;
+            case 9:
+                return 'Setembro';
+                break;
+            case 10:
+                return 'Outubro';
+                break;
+            case 11:
+                return 'Novembro';
+                break;
+            case 12:
+                return 'Dezembro';
+                break;
 
-        default:
-            break;
+            default:
+                break;
+        }
     }
 }
 
@@ -110,7 +100,7 @@ function converterArrayIndice($data, $id, $descricao) {
 }
 
 function converteMoedaBanco(&$valor) {
-    $valor = str_replace(',', '.', str_replace('.', '', $valor));
+    return $valor = str_replace(',', '.', str_replace('.', '', $valor));
 }
 
 function chk_array($array, $key) {
@@ -151,4 +141,43 @@ function loadMessagem($array) {
             <h4>{$array['texto']}</h4>
         </div>
 MSG;
+}
+
+function limpaMascara(&$valor) {
+    $valor = str_replace("(", "", $valor);
+    $valor = str_replace(")", "", $valor);
+    $valor = str_replace("/", "", $valor);
+    $valor = str_replace("|", "", $valor);
+    $valor = str_replace(".", "", $valor);
+    $valor = str_replace(",", "", $valor);
+    $valor = str_replace("-", "", $valor);
+    $valor = str_replace(" ", "", $valor);
+    return $valor;
+}
+
+function dateSmalltoFull(&$valor) {
+    if ($valor != null && $valor != '') {
+        $date_small = explode('/', $valor);
+        return $valor = '01/' . $date_small[0] . '/' . $date_small[1];
+    }
+}
+
+function dateFulltoSmall(&$valor) {
+    if ($valor != null && $valor != '') {
+        $date_small = explode('/', $valor);
+        return $valor = $date_small[1] . '/' . $date_small[2];
+    }
+}
+
+function newNumber_format($number, $decimals = null, $dec_point = null, $thousands_sep = null) {
+    if ($number != null && $number != '') {
+        return number_format($number, $decimals, $dec_point, $thousands_sep);
+    }
+}
+
+function setHashId($id) {
+    if ($id == null || $id != '') {
+        $id = uniqid(time());
+    }
+    return $id;
 }
