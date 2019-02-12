@@ -72,8 +72,10 @@ class conexao extends PDO {
     public function findAll() {
         $query = $this->query("SELECT * FROM {$this->_table}");
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        for ($i = 0; $i < count($result); $i++) {
-            $result[$i] = $this->getObjetctDAO($result[$i]);
+        if (count($result) > 0) {
+            for ($i = 0; $i < count($result); $i++) {
+                $result[$i] = $this->getObjetctDAO($result[$i]);
+            }
         }
         return $result;
     }
@@ -131,7 +133,7 @@ class conexao extends PDO {
         $query = $this->query("SHOW COLUMNS FROM {$this->_table}");
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as $value) {
-            $arrayDAO[$value['Field']] = null;
+            $arrayDAO[$value['Field']] = $objetct[$value['Field']];
         }
         return $arrayDAO;
     }
@@ -143,6 +145,7 @@ class conexao extends PDO {
                 $objectDAO[$key] = $value;
             }
         }
+        $objectDAO['hash_id'] = setHashId($objectDAO['hash_id']);
         return $objectDAO;
     }
 

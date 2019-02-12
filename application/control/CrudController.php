@@ -77,19 +77,65 @@ class CrudController {
     }
 
     public function index() {
-        return new ViewModel($this);
+        $list = $this->objDAO->findAll();
+        return new ViewModel($this, array('lista' => $list));
     }
 
     public function novo() {
-        return new ViewModel($this);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            try {
+                $this->objDAO->salvar($this->objDAO->setObjetctDAO($_POST));
+                $this->SetMensagem();
+                redirect($this->folder);
+                return;
+            } catch (Exception $exc) {
+                $this->SetMensagem('danger');
+                return new ViewModel($this, array('dados' => $_POST));
+            }
+        }
+
+        return new ViewModel($this, array('dados' => $this->objDAO->getObjetctDAO()));
     }
 
     public function editar() {
-        return new ViewModel($this);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            try {
+                $this->objDAO->salvar($this->objDAO->setObjetctDAO($_POST));
+                $this->SetMensagem();
+                redirect($this->folder);
+                return;
+            } catch (Exception $exc) {
+                $this->SetMensagem('danger');
+                return new ViewModel($this, array('dados' => $_POST));
+            }
+            return;
+        }
+        $dados = $this->objDAO->findHash($this->parametro);
+        return new ViewModel($this, array('dados' => $dados));
     }
 
     public function excluir() {
-        
+        $linhasAfetadas = $this->objDAO->deleteHash($this->parametro);
+        if ($linhasAfetadas == 0) {
+            if (strpos($_SERVER['HTTP_ACCEPT'], 'json')) {
+                header('HTTP/1.1 500');
+                echo 'Não foi possivel excluir o registro';
+                return;
+            } else {
+                $this->SetMensagem('danger', "Não foi possivel excluir o registro.");
+                redirect($this->folder);
+            }
+        } else {
+            if (strpos($_SERVER['HTTP_ACCEPT'], 'json')) {
+                echo json_encode(array(
+                    'result' => 'Registro excluído com sucesso'
+                ));
+                return;
+            } else {
+                $this->SetMensagem('success', "Registro excluído com sucesso");
+                redirect($this->folder);
+            }
+        }
     }
 
     public function notFound() {
