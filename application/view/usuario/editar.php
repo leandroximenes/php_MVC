@@ -1,5 +1,5 @@
 <h2>Editar Usuário</h2>
-<?php $dados = $this->data['usuario'] ?>
+<?php $dados = $this->data['dados'] ?>
 <?php loadMessagem($this->mensagem) ?>
 <form method="POST" enctype="multipart/form-data" class="form-inline">
     <div class="form-group">

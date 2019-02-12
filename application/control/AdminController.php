@@ -8,4 +8,8 @@
  */
 class AdminController extends CrudController {
 
+    public function index() {
+        return new ViewModel($this);
+    }
+
 }
