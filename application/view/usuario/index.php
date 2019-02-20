@@ -8,7 +8,6 @@
             <td>ID</td><!-- hidden and order by desc -->
             <td>Nome</td>
             <td>Email</td>
-            <td>Perfil</td>
             <td>Status</td>
 
         </tr>
@@ -24,7 +23,6 @@
                 <td><?= $value['id'] ?></td><!-- hidden -->
                 <td><?= $value['nome'] ?></td>
                 <td><?= $value['email'] ?></td>
-                <td><?= $value['perfil'] ?></td>
                 <td><?= $value['ativo'] ?></td>
             </tr>
         <?php endforeach; ?>

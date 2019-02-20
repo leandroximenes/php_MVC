@@ -14,4 +14,12 @@ class ExampleController extends CrudController {
         $this->objDAO = new example();
     }
 
+    public function ajax() {
+        echo json_encode(array(
+            'valid' => 'true'
+        ));
+
+        return;
+    }
+
 }

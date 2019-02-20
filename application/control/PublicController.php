@@ -14,5 +14,9 @@ class PublicController extends CrudController {
         $this->page = $parameters->url;
         $this->public = $parameters->public;
     }
+    
+    public function index() {
+        return new ViewModel($this);
+    }
 
 }

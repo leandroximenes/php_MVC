@@ -84,7 +84,8 @@ class CrudController {
     public function novo() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             try {
-                $this->objDAO->salvar($this->objDAO->setObjetctDAO($_POST));
+                $this->objDAO->setObjetctDAO($_POST);
+                $this->objDAO->salvar();
                 $this->SetMensagem();
                 redirect($this->folder);
                 return;
@@ -100,7 +101,8 @@ class CrudController {
     public function editar() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             try {
-                $this->objDAO->salvar($this->objDAO->setObjetctDAO($_POST));
+                $this->objDAO->setObjetctDAO($_POST);
+                $this->objDAO->salvar();
                 $this->SetMensagem();
                 redirect($this->folder);
                 return;

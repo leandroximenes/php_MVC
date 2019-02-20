@@ -51,9 +51,7 @@
                 <label>Select</label>
                 <select class="form-control" required="required" name="value_select" >
                     <option value="">Selecione</option>
-                    <?php foreach ($this->controller->objDAO->getItens() as $key => $value) : ?>
-                        <option value="<?= $key ?>"><?= $value ?></option>
-                    <?php endforeach; ?>
+                    <?= gerarOptionSelect($this->controller->objDAO->getItens(), $dados['value_select']) ?>
                 </select>
             </div>
         </div>
@@ -69,12 +67,12 @@
                 <div class="col-sm-5">
                     <div class="radio">
                         <label>
-                            <input type="radio" name="ativo" value="1" checked="checked" /> Ativo
+                            <input type="radio" name="ativo" value="1" <?php echo ($dados['ativo'] == 1) ? 'checked' : '' ?> /> Ativo
                         </label>
                     </div>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="ativo" value="0" /> Inativo
+                            <input type="radio" name="ativo" value="0" <?php echo ($dados['ativo'] == 0) ? 'checked' : '' ?>/> Inativo
                         </label>
                     </div>
                 </div>
