@@ -50,9 +50,7 @@
                 <label>Select</label>
                 <select class="form-control" required="required" name="value_select" >
                     <option value="">Selecione</option>
-                    <?php foreach ($this->controller->objDAO->getItens() as $key => $value) : ?>
-                        <option value="<?= $key ?>"><?= $value ?></option>
-                    <?php endforeach; ?>
+                    <?= gerarOptionSelect($this->controller->objDAO->getItens(), $dados['value_select']) ?>
                 </select>
             </div>
         </div>

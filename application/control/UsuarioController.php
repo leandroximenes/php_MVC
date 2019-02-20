@@ -34,12 +34,4 @@ class UsuarioController extends CrudController {
         return new ViewModel($this);
     }
 
-    public function ajax() {
-        echo json_encode(array(
-            'valid' => 'true'
-        ));
-
-        return;
-    }
-
 }

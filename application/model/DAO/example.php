@@ -1,6 +1,6 @@
 <?php
 
-class example extends conexao {
+class example extends DAO {
 
     function __construct() {
         parent::__construct();
@@ -24,29 +24,27 @@ class example extends conexao {
     }
 
     public function getObjetctDAO($objectDAO = null) {
+        $this->objectDAO = parent::getObjetctDAO($objectDAO);
         if (isset($objectDAO)) {
-            $objectDAO['date_full'] = inverteData($objectDAO['date_full']);
-            $objectDAO['date_small'] = inverteData($objectDAO['date_small']);
-            $objectDAO['date_small'] = dateFulltoSmall($objectDAO['date_small']);
-            $objectDAO['value_decimal'] = newNumber_format($objectDAO['value_decimal'], 2, ',', '.');
-            $objectDAO['value_select_text'] = $this->getItens($objectDAO['value_select']);
-        } else {
-            $objectDAO = parent::getObjetctDAO();
+            $this->objectDAO['date_full'] = inverteData($objectDAO['date_full']);
+            $this->objectDAO['date_small'] = inverteData($objectDAO['date_small']);
+            $this->objectDAO['date_small'] = dateFulltoSmall($objectDAO['date_small']);
+            $this->objectDAO['value_decimal'] = newNumber_format($objectDAO['value_decimal'], 2, ',', '.');
+            $this->objectDAO['value_select_text'] = $this->getItens($objectDAO['value_select']);
         }
-        return $objectDAO;
+        return $this->objectDAO;
     }
 
     public function setObjetctDAO($array) {
-        $objectDAO = parent::setObjetctDAO($array);
-        $objectDAO['hash_id'] = setHashId($objectDAO['hash_id']);
-        $objectDAO['cpf'] = limpaMascara($objectDAO['cpf']);
-        $objectDAO['date_full'] = inverteData($objectDAO['date_full']);
-        $objectDAO['date_small'] = dateSmalltoFull($objectDAO['date_small']);
-        $objectDAO['date_small'] = inverteData($objectDAO['date_small']);
-        $objectDAO['value_int'] = converteMoedaBanco($objectDAO['value_int']);
-        $objectDAO['value_decimal'] = converteMoedaBanco($objectDAO['value_decimal']);
+        $this->objectDAO = parent::setObjetctDAO($array);
+        limpaMascara($this->objectDAO['cpf']);
+        inverteData($this->objectDAO['date_full']);
+        dateSmalltoFull($this->objectDAO['date_small']);
+        inverteData($this->objectDAO['date_small']);
+        converteMoedaBanco($this->objectDAO['value_int']);
+        converteMoedaBanco($this->objectDAO['value_decimal']);
 
-        return $objectDAO;
+        return $this->objectDAO;
     }
 
 }
