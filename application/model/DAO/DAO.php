@@ -37,6 +37,21 @@ class DAO extends funcoes {
         foreach ($this->get_primitiveObjectDAO() as $value) {
             $this->objectDAO[$value['Field']] = $objetct[$value['Field']];
         }
+
+        if (array_key_exists('ativo', $this->objectDAO) && $objetct != null ) {
+            switch (intval($this->objectDAO['ativo'])) {
+                case 1:
+                    $this->objectDAO['ativo_desc'] = 'Ativo';
+                    break;
+                case 0:
+                    $this->objectDAO['ativo_desc'] = 'Inativo';
+                    break;
+                default:
+                    $this->objectDAO['ativo_desc'] = '';
+                    break;
+            }
+        }
+
         return $this->objectDAO;
     }
 

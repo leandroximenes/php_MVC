@@ -14,6 +14,21 @@ class UsuarioController extends CrudController {
         $this->objDAO = new usuarios();
     }
 
+    public function excluir() {
+        if ($this->parametro != $_SESSION[APP_NAME]['usuario']['hash_id']) {
+            parent::excluir();
+        } else {
+            if (strpos($_SERVER['HTTP_ACCEPT'], 'json')) {
+                header('HTTP/1.1 500');
+                echo 'Você não pode excluir o usuário logado';
+                return;
+            } else {
+                $this->SetMensagem('danger', "Você não pode excluir o usuário logado.");
+                redirect($this->folder);
+            }
+        }
+    }
+
     public function alterarSenha() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             try {
