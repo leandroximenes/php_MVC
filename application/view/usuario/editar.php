@@ -1,4 +1,4 @@
-<h2>Editar Usuário</h2>
+<h2>Editar <?= $this->controller->headTitle; ?></h2>
 <?php $dados = $this->data['dados'] ?>
 <?php loadMessagem($this->mensagem); ?>
 <form method="POST" enctype="multipart/form-data" class="form-horizontal registerForm">

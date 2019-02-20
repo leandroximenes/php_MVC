@@ -1,5 +1,5 @@
-<h2>Listar usuários</h2>
-<h3><a href="<?= ADMIN_SRC ?>usuario/novo">Adicionar</a></h3><br/>
+<h2>Listar <?= $this->controller->headTitle; ?></h2>
+<h3><a href="<?= ADMIN_SRC . $this->controller->folder ?>/novo">Adicionar</a></h3><br/>
 <?php loadMessagem($this->mensagem) ?>
 <table id="table-result" class="table table-striped table-bordered table-hover">
     <thead>
@@ -17,13 +17,15 @@
         <?php foreach ($this->data['lista'] as $value): ?>
             <tr>
                 <td>
-                    <a href="<?= ADMIN_SRC ?>usuario/editar/<?= $value['hash_id'] ?>">Editar</a> /
-                    <a class="excluir" href="<?= ADMIN_SRC ?>usuario/excluir/<?= $value['hash_id'] ?>">Excluir</a>
+                    <a href="<?= ADMIN_SRC . $this->controller->folder ?>/editar/<?= $value['hash_id'] ?>">Editar</a> 
+                    <?php if ($value['hash_id'] != $_SESSION[APP_NAME]['usuario']['hash_id']) : ?>
+                       / <a class="excluir" href="<?= ADMIN_SRC . $this->controller->folder ?>/excluir/<?= $value['hash_id'] ?>">Excluir</a>
+                    <?php endif; ?>
                 </td>
                 <td><?= $value['id'] ?></td><!-- hidden -->
                 <td><?= $value['nome'] ?></td>
                 <td><?= $value['email'] ?></td>
-                <td><?= $value['ativo'] ?></td>
+                <td><?= $value['ativo_desc'] ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

@@ -1,5 +1,5 @@
-<h2>Listar Exemplo</h2>
-<h3><a href="<?= ADMIN_SRC ?>example/novo">Adicionar</a></h3><br/>
+<h2>Listar <?= $this->controller->headTitle; ?></h2>
+<h3><a href="<?= ADMIN_SRC . $this->controller->folder ?>/novo">Adicionar</a></h3><br/>
 <?php loadMessagem($this->mensagem) ?>
 <table id="table-result" class="table table-striped table-bordered table-hover">
     <thead>
@@ -11,7 +11,7 @@
             <td>Date Full</td>
             <td>Date Small</td>
             <td>Value Select</td>
-
+            <td>Status</td>
         </tr>
     </thead>
     <tbody>
@@ -19,8 +19,8 @@
         <?php foreach ($this->data['lista'] as $value): ?>
             <tr>
                 <td>
-                    <a href="<?= ADMIN_SRC ?>example/editar/<?= $value['hash_id'] ?>">Editar</a> /
-                    <a class="excluir" href="<?= ADMIN_SRC ?>example/excluir/<?= $value['hash_id'] ?>">Excluir</a>
+                    <a href="<?= ADMIN_SRC . $this->controller->folder ?>/editar/<?= $value['hash_id'] ?>">Editar</a> /
+                    <a class="excluir" href="<?= ADMIN_SRC . $this->controller->folder ?>/excluir/<?= $value['hash_id'] ?>">Excluir</a>
                 </td>
                 <td><?= $value['id'] ?></td><!-- hidden -->
                 <td><?= $value['cpf'] ?></td>
@@ -28,6 +28,7 @@
                 <td><?= $value['date_full'] ?></td>
                 <td><?= $value['date_small'] ?></td>
                 <td><?= $value['value_select_text'] ?></td>
+                <td><?= $value['ativo_desc'] ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
