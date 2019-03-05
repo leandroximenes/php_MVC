@@ -77,6 +77,7 @@ LXMVC
 ```
 ## Add new CRUD
 1- Create new table
+```bash
 CREATE TABLE `controle`.`student` (
   `id` INT NOT NULL AUTOINCREMENT,
   `hash_id` VARCHAR(45) NULL,
@@ -84,7 +85,7 @@ CREATE TABLE `controle`.`student` (
   `email` VARCHAR(255) NULL,
   `ativo` SMALLINT(1) NULL,
   PRIMARY KEY (`id`));
-
+```
 2- clone "ExampleController.php", rename file to "StudentController.php" and change class name and parameters
 3- clone model/DAO/"example.php", and rename to "student.php" and change class name keeping only constructor.
 4- clone folder view/"example" and rename to "student"
