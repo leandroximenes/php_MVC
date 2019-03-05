@@ -19,10 +19,7 @@ senha: 123456<br/>
 This is a very simple [MVC][mvc-pattern] structure, it contains Bootstrap, jQuery and Ajax.
 There is auth module and user register.
 
-## Simples
-
-É um modelo muito simples de estrutrua de MVC. Contém Bootstrap, jQuery e Ajax.
-Há um módulo de login e registro de usuário.
+## Files tree
 
 ```bash
 
