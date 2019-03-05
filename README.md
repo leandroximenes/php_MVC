@@ -32,13 +32,18 @@ LXMVC
 │   │   ├── AdminController.php
 │   │   ├── AuthController.php
 │   │   ├── CrudController.php
+│   │   ├── ExampleController.php
 │   │   ├── MainController.php
 │   │   ├── PublicController.php
 │   │   └── UsuarioController.php
 │   ├── model
 │   │   ├── DAO
+│   │   │   ├── DAO.php
+│   │   │   ├── example.php
 │   │   │   └── usuarios.php
 │   │   ├── conexao.php
+│   │   ├── funcoes.php
+│   │   ├── my_setting.ini
 │   │   └── sql
 │   └── views
 │       ├── home
@@ -51,16 +56,23 @@ LXMVC
 │       │   ├── editar.php
 │       │   ├── index.php
 │       │   └── novov.php
+│       ├── example
+│       │   ├── editar.php
+│       │   ├── index.php
+│       │   └── novov.php
 │       ├── ViewModel.php
 │       ├── layout.php
 ├── public
 |    ├── css
 │    ├── js
 │    ├── 404.php
+│    ├── contato.php
 │    ├── index.php
 |    └── layout.php
 ├── util
 |    └── Util.php
+├── .gitignore
+├── .htaccess
 ├── config.php
 ├── index.php
 └── loader.php
