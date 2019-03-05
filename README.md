@@ -75,7 +75,21 @@ LXMVC
 └── loader.php
 
 ```
+## Add new CRUD
+1- Create new table
+CREATE TABLE `controle`.`student` (
+  `id` INT NOT NULL AUTOINCREMENT,
+  `hash_id` VARCHAR(45) NULL,
+  `name` VARCHAR(45) NULL,
+  `email` VARCHAR(255) NULL,
+  `ativo` SMALLINT(1) NULL,
+  PRIMARY KEY (`id`));
 
+2- clone "ExampleController.php", rename file to "StudentController.php" and change class name and parameters
+3- clone model/DAO/"example.php", and rename to "student.php" and change class name keeping only constructor.
+4- clone folder view/"example" and rename to "student"
+5- Make the changes in the "new" and edit "pages"
+6(Optional)- Change menu "view/layout.php"
 
 ## License
 
