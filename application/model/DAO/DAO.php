@@ -66,6 +66,7 @@ class DAO extends funcoes {
         }
         if (array_key_exists('hash_id', $this->objectDAO) && (!array_key_exists('id', $array))) {
             setHashId($this->objectDAO['hash_id']);
+            unset($this->objectDAO['id']);
         } else {
             unset($this->objectDAO['hash_id']);
         }
