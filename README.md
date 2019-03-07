@@ -114,8 +114,8 @@ LXMVC
 ## Add new CRUD
 1- Create new table
 ```bash
-CREATE TABLE `controle`.`student` (
-  `id` INT NOT NULL AUTOINCREMENT,
+CREATE TABLE `student` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `hash_id` VARCHAR(45) NULL,
   `name` VARCHAR(45) NULL,
   `email` VARCHAR(255) NULL,
