@@ -19,6 +19,42 @@ senha: 123456<br/>
 This is a very simple [MVC][mvc-pattern] structure, it contains Bootstrap, jQuery and Ajax.
 There is auth module and user register.
 
+## SQL
+```bash
+DROP DATABASE controle;
+CREATE DATABASE controle;
+USE controle;
+
+CREATE TABLE `usuarios` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `hash_id` VARCHAR(45) NULL,
+  `nome` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NULL,
+  `senha` VARCHAR(45) NULL,
+  `perfil` SMALLINT(2) NULL,
+  `ativo` SMALLINT(1) NULL,
+  PRIMARY KEY (`id`));
+
+INSERT INTO `usuarios` (`id`, `hash_id`, `nome`, `email`, `senha`, `perfil`, `ativo`) VALUES
+(1, '15482506375c486e0d4f664',  'Leandro', 'leandroj.r.ximenes@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1,  1);
+
+
+CREATE TABLE `example` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `hash_id` VARCHAR(45) NULL,
+  `text` VARCHAR(255) NULL,
+  `CPF` VARCHAR(13) NULL,
+  `email` VARCHAR(255) NULL,
+  `data_full` date NULL,
+  `date_small` date NULL,
+  `value_int` int NULL,
+  `value_decimal` decimal(8,2) NULL,
+  `value_select` SMALLINT(2) NULL,
+  `upload` VARCHAR(255) NULL,
+  `ativo` SMALLINT(1) NULL,
+  PRIMARY KEY (`id`));
+
+```
 ## Files tree
 
 ```bash
