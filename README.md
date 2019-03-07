@@ -122,10 +122,10 @@ CREATE TABLE `student` (
   `ativo` SMALLINT(1) NULL,
   PRIMARY KEY (`id`));
 ```
-2- clone "ExampleController.php", rename file to "StudentController.php" and change class name and parameters<br/>
-3- clone model/DAO/"example.php", and rename to "student.php" and change class name keeping only constructor<br/>
+2- clone "ExampleController.php", rename file to "StudentController.php" and change class name, modify parameters and keep only constructor<br/>
+3- clone model/DAO/"example.php", and rename to "student.php", change class name and keeping only constructor<br/>
 4- clone folder view/"example" and rename to "student"<br/>
-5- Make the changes in the "new" and edit "pages"<br/>
+5- Make the changes in the "index", "new" and "edit" pages according with the database<br/>
 6(Optional)- Change menu "view/layout.php"<br/>
 
 ## License
